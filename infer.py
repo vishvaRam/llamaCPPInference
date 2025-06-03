@@ -11,7 +11,7 @@ class ImageAnalysisResult(BaseModel):
 
 # Set up the client
 client = OpenAI(
-    base_url="http://192.9.200.28:8000/v1",
+    base_url="http://[ip]:8000/v1",
     api_key="not-needed"
 )
 
