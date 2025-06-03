@@ -26,8 +26,8 @@ services:
       - "999"
       - -n
       - "4096"
-      # - --n-threads
-      # - "8"
+      - -t # Threads
+      - "8"
 
     # environment:
     #   # These environment variables from your original command are actually
