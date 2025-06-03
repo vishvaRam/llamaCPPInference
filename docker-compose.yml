@@ -1,0 +1,37 @@
+services:
+  llama-cpp-server:
+    image: ghcr.io/ggml-org/llama.cpp:server-cuda
+    container_name: llama-cpp-server
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    ports:
+      - "8000:8000"
+    volumes:
+      - D:\Vishva\LLamaCPP\models:/models
+    command:
+      - -m
+      - /models/Model-7.6B-Q8_0.gguf
+      - --mmproj
+      - /models/mmproj-model-f16.gguf
+      - --port
+      - "8000"
+      - --host
+      - 0.0.0.0
+      - --n-gpu-layers
+      - "999"
+      - -n
+      - "4096"
+      # - --n-threads
+      # - "8"
+
+    # environment:
+    #   # These environment variables from your original command are actually
+    #   # being overridden by the 'command' section, but including them for
+    #   # completeness if they were meant for other purposes.
+    #   - LLAMA_ARG_MODEL=
+    #   - LLAMA_ARG_MMPROJ=
