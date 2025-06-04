@@ -1,17 +1,15 @@
 services:
   llama-cpp-server:
-    image: ghcr.io/ggml-org/llama.cpp:server 
+    build: .
     container_name: llama-cpp-server
     ports:
       - "8000:8000"
-    volumes:
-      - D:\Data Science\JUNE_2025\LlamaCPP\models:/models
     command:
       - -m
-      - /models/Model-7.6B-Q8_0.gguf
-      - --no-mmproj-offload
-      # - --mmproj
-      # - /models/mmproj-model-f16.gguf
+      - /models/Model-7.6B-Q4_0.gguf
+      # - --no-mmproj-offload
+      - --mmproj
+      - /models/mmproj-model-f16.gguf
       - --port
       - "8000"
       - --host
