@@ -1,18 +1,19 @@
 services:
-  llama-cpp-server:
-    build: .
-    container_name: llama-cpp-server
+  llama-cpp-server-cpu:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: llama-cpp-server-cpu
     ports:
-      - "8000:8000"
+      - "8686:8686"
     command:
       - -m
       - /models/Model-7.6B-Q4_0.gguf
-      # - --no-mmproj-offload
       - --mmproj
       - /models/mmproj-model-f16.gguf
       - --port
-      - "8000"
+      - "8686"
       - --host
       - 0.0.0.0
       - -t
-      - "16"
+      - "32"
